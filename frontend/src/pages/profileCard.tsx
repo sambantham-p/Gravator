@@ -37,8 +37,9 @@ export const ProfileCard = () => {
         const res = await axios.get(`${baseURL}/user/${userId}`);
         setProfile(res.data);
         res.data.joinOn = formatDate(res?.data?.joinOn);
-      } catch (err) {
+      } catch (err: any) {
         console.error('Error fetching user:', err);
+
         if (err?.response?.status === 500) {
           navigate('/');
         }
