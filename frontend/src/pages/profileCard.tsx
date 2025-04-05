@@ -1,3 +1,10 @@
+import {
+  CalendarCheck,
+  Link as LinkIcon,
+  Mail,
+  Phone,
+  UserCheck,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -83,46 +90,78 @@ export const ProfileCard = () => {
           </div>
         )}
 
-        <div className='bg-gray-100 rounded-xl px-4 py-4 w-full md:w-96 sm:w-60'>
-          <div className='flex justify-between items-center mb-6'>
-            <span className='text-base text-gray-600 hidden sm:inline'>
+        <div className='bg-gray-100 rounded-xl px-4 py-4 w-full sm:w-60 md:w-[105%] mx-auto'>
+          <div className='mb-6 lg:flex lg:space-x-6'>
+            <div className='hidden lg:block text-base text-gray-600 w-28'>
               Status
-            </span>
-            <span className='bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full font-medium mx-auto sm:mx-0'>
-              Active
-            </span>
+            </div>
+            <div className='flex items-center justify-center lg:justify-start gap-4'>
+              <UserCheck className='w-5 h-5 text-gray-500 lg:hidden' />
+              <span className='bg-green-100 text-green-600 text-sm px-3 py-1 rounded-full font-medium'>
+                Active
+              </span>
+            </div>
           </div>
           <hr className='pb-3' />
 
-          <div className='flex justify-between items-center mb-6'>
-            <span className='text-base  text-gray-600 hidden sm:inline'>
+          <div className='mb-6 lg:flex lg:space-x-6'>
+            <div className='hidden lg:block text-base text-gray-600 w-28'>
               Joined On
-            </span>
-            <span className='text-base text-gray-600 mx-auto sm:mx-0'>
-              {profile.joinOn}
-            </span>
+            </div>
+            <div className='flex items-center justify-center lg:justify-start gap-4'>
+              <CalendarCheck className='w-5 h-5 text-gray-500 lg:hidden' />
+              <span className='text-base text-gray-600'>{profile.joinOn}</span>
+            </div>
           </div>
           <hr className='pb-3' />
-          <div className='flex justify-between items-center mb-6'>
-            <span className='text-base text-gray-600 hidden md:inline'>
+
+          <div className='mb-6 lg:flex lg:space-x-6'>
+            <div className='hidden lg:block text-base text-gray-600 w-28'>
               Email
-            </span>
-            <span className='text-base text-gray-600 mx-auto sm:mx-0 '>
-              {profile.emailAddress}
-            </span>
+            </div>
+            <div className='flex items-center justify-center lg:justify-start gap-4'>
+              <Mail className='w-5 h-5 text-gray-500 lg:hidden' />
+              <span
+                className='text-base text-gray-600 max-w-[220px] truncate hover:overflow-visible hover:whitespace-normal'
+                title={profile.emailAddress}
+              >
+                {profile.emailAddress}
+              </span>
+            </div>
           </div>
           <hr className='pb-3' />
+
           {profile.url && (
-            <div className='flex justify-between items-center mb-6'>
-              <span className='text-base  text-gray-600 hidden md:inline'>
-                URL
-              </span>
-              <span
-                className='text-base text-gray-600 mx-auto sm:mx-0 lg:truncate lg:max-w-[220px] lg:hover lg:cursor-pointer'
-                title={profile.url}
-              >
-                {profile.url}
-              </span>
+            <>
+              <div className='mb-6 lg:flex lg:space-x-6'>
+                <div className='hidden lg:block text-base text-gray-600 w-28'>
+                  URL
+                </div>
+                <div className='flex items-center justify-center lg:justify-start gap-4'>
+                  <LinkIcon className='w-5 h-5 text-gray-500 lg:hidden' />
+                  <span
+                    className='text-base text-gray-600 max-w-[220px] truncate hover:overflow-visible hover:whitespace-normal'
+                    title={profile.url}
+                  >
+                    {profile.url}
+                  </span>
+                </div>
+              </div>
+              <hr className='pb-3' />
+            </>
+          )}
+
+          {profile.phoneNumber && (
+            <div className='mb-6 lg:flex lg:space-x-6'>
+              <div className='hidden lg:block text-base text-gray-600 w-28'>
+                Phone
+              </div>
+              <div className='flex items-center justify-center lg:justify-start gap-4'>
+                <Phone className='w-5 h-5 text-gray-500 lg:hidden' />
+                <span className='text-base text-gray-600'>
+                  {profile.phoneNumber}
+                </span>
+              </div>
             </div>
           )}
         </div>
