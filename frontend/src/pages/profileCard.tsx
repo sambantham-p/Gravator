@@ -61,34 +61,32 @@ export const ProfileCard = () => {
   return (
     <div className='h-screen flex items-center bg-blue-50'>
       <div className='mx-auto max-w-max px-6 py-2 md:px-12 md:py-10 overflow-hidden rounded-3xl bg-slate-50 shadow-lg md:max-w-2xl'>
-     {profile.gravatar.thumbnailUrl ? (
-          <div className='flex-col md:pb-5'>
+   <div className='flex-col md:pb-5'>
+          {profile.gravatar.thumbnailUrl ? (
             <img
               src={profile.gravatar.thumbnailUrl}
               alt='Gravatar'
               className='w-24 h-24 rounded-full object-cover mb-2 mx-auto'
             />
-            <p className='flex justify-center font-bold text-4xl mb-2'>
-              {profile.gravatar.displayName || profile.fullName}
-            </p>
-
-            {profile.description && (
-              <p className='flex justify-center text-xl'>
-                {profile.description}
-              </p>
-            )}
-
-            <div className='flex flex-col md:flex-row gap-1 justify-center items-center text-lg'>
-              <p>{profile.country} ,</p>
-              <p>{profile.state} ,</p>
-              <p>{profile.city}</p>
+          ) : (
+            <div className='w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold mb-4 mx-auto'>
+              {profile.fullName?.toUpperCase().charAt(0)}
             </div>
+          )}
+          <p className='flex justify-center font-bold text-4xl mb-2'>
+            {profile.gravatar.displayName || profile.fullName}
+          </p>
+
+          {profile.description && (
+            <p className='flex justify-center text-xl'>{profile.description}</p>
+          )}
+
+          <div className='flex flex-col md:flex-row gap-1 justify-center items-center text-lg'>
+            <p>{profile.country} ,</p>
+            <p>{profile.state} ,</p>
+            <p>{profile.city}</p>
           </div>
-        ) : (
-          <div className='w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold mb-4 mx-auto'>
-            {profile.fullName?.toUpperCase().charAt(0)}
-          </div>
-        )}
+        </div>
         
         <div className='bg-gray-100 rounded-xl px-4 py-4 w-full sm:w-60 md:w-[105%] mx-auto'>
           <div className='mb-6 lg:flex lg:space-x-6'>
