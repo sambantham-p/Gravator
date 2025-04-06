@@ -33,6 +33,8 @@ export const ProfileCard = () => {
           return 'nd';
         case 3:
           return 'rd';
+        default:
+          return 'th';
       }
     }
     return `${day}${getSuffix(day)} ${month} ${year}`;
@@ -59,9 +61,9 @@ export const ProfileCard = () => {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <div className='h-screen flex items-center bg-blue-50'>
-      <div className='mx-auto max-w-max px-6 py-2 md:px-12 md:py-10 overflow-hidden rounded-3xl bg-slate-50 shadow-lg md:max-w-2xl'>
-   <div className='flex-col md:pb-5'>
+    <div className='h-screen flex items-center bg-blue-100'>
+      <div className='mx-auto max-w-max px-6 py-2 md:px-12 md:py-10 overflow-hidden rounded-3xl bg-zinc-50 shadow-lg md:max-w-2xl'>
+        <div className='flex-col md:pb-5'>
           {profile.gravatar.thumbnailUrl ? (
             <img
               src={profile.gravatar.thumbnailUrl}
@@ -69,25 +71,22 @@ export const ProfileCard = () => {
               className='w-24 h-24 rounded-full object-cover mb-2 mx-auto'
             />
           ) : (
-            <div className='w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold mb-4 mx-auto'>
+            <div className='w-24 h-24 rounded-full bg-blue-200 flex items-center justify-center text-4xl font-bold mb-4 mx-auto'>
               {profile.fullName?.toUpperCase().charAt(0)}
             </div>
           )}
-          <p className='flex justify-center font-bold text-4xl mb-2'>
+          <p className='flex justify-center font-bold text-3xl mb-2'>
             {profile.gravatar.displayName || profile.fullName}
           </p>
 
           {profile.description && (
             <p className='flex justify-center text-xl'>{profile.description}</p>
           )}
-
-          <div className='flex flex-col md:flex-row gap-1 justify-center items-center text-lg'>
-            <p>{profile.country} ,</p>
-            <p>{profile.state} ,</p>
-            <p>{profile.city}</p>
+          <div className='text-lg max-w-full truncate whitespace-nowrap overflow-hidden text-center hover:overflow-visible hover:whitespace-normal'>
+            {profile.country}, {profile.state}, {profile.city}
           </div>
         </div>
-        
+
         <div className='bg-gray-100 rounded-xl px-4 py-4 w-full sm:w-60 md:w-[105%] mx-auto'>
           <div className='mb-6 lg:flex lg:space-x-6'>
             <div className='hidden lg:block text-base text-gray-600 w-28'>
@@ -119,10 +118,7 @@ export const ProfileCard = () => {
             </div>
             <div className='flex items-center justify-center lg:justify-start gap-4'>
               <Mail className='w-5 h-5 text-gray-500 lg:hidden' />
-              <span
-                className='text-base text-gray-600 max-w-[220px] truncate hover:overflow-visible hover:whitespace-normal'
-                title={profile.emailAddress}
-              >
+              <span className='text-base text-gray-600 max-w-[220px] truncate hover:overflow-visible hover:whitespace-normal'>
                 {profile.emailAddress}
               </span>
             </div>
@@ -137,10 +133,7 @@ export const ProfileCard = () => {
                 </div>
                 <div className='flex items-center justify-center lg:justify-start gap-4'>
                   <LinkIcon className='w-5 h-5 text-gray-500 lg:hidden' />
-                  <span
-                    className='text-base text-gray-600 max-w-[220px] truncate hover:overflow-visible hover:whitespace-normal'
-                    title={profile.url}
-                  >
+                  <span className='text-base text-gray-600 max-w-[220px] truncate hover:overflow-visible hover:whitespace-normal'>
                     {profile.url}
                   </span>
                 </div>

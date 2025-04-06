@@ -10,10 +10,10 @@ function hashEmail(email) {
   return emailHash;
 }
 
-function GravatorEmail(email) {
+function GravatarEmail(email) {
   const emailHash = hashEmail(email);
-  const gravatorEmail = `https://www.gravatar.com/${emailHash}.json`;
-  return gravatorEmail;
+  const gravatarEmail = `https://www.gravatar.com/${emailHash}.json`;
+  return gravatarEmail;
 }
 
-module.exports = GravatorEmail;
+module.exports = GravatarEmail;
