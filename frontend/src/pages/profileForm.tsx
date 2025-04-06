@@ -10,22 +10,22 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
-
+const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 // Phone regex for indian phone numbers
-const phoneReg = /^(?:\+91[\-\s]?|0)?[6-9]\d{9}$/;
+const phoneReg = /^(?:\+91[-\s]?)?[6-9]\d{9}$/;
 
 const Profile = yup.object().shape({
   emailAddress: yup
     .string()
-    .email('Invalid email')
-    .required('Email is required'),
+    .required('Email is required')
+    .matches(emailReg, 'Email is Invalid'),
   fullName: yup.string().required('User Name is required'),
   url: yup.string().url(),
   description: yup.string(),
   location: yup.object().shape({
-    country: yup.string().required(),
-    state: yup.string().required(),
-    city: yup.string().required(),
+    country: yup.string().required('Location is required'),
+    state: yup.string().required('State is required'),
+    city: yup.string().required('City is required'),
   }),
   phoneNumber: yup
     .string()
