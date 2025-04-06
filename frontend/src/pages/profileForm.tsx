@@ -11,8 +11,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-const phoneNumberReg =
-  /^(\+?\d{1,4}[-.\s]?)?(\(?\d{2,4}\)?[-.\s]?)?\d{3,4}[-.\s]?\d{3,4}$/;
+// Phone regex for indian phone numbers
+const phoneReg = /^(?:\+91[\-\s]?|0)?[6-9]\d{9}$/;
 
 const Profile = yup.object().shape({
   emailAddress: yup
@@ -30,7 +30,7 @@ const Profile = yup.object().shape({
   phoneNumber: yup
     .string()
     .required('Phone number is required')
-    .matches(phoneNumberReg, 'Phone number is not valid'),
+    .matches(phoneReg, 'Phone number is not valid'),
 });
 
 export const ProfileForm = () => {
@@ -201,7 +201,7 @@ export const ProfileForm = () => {
               {...register('description')}
               className='sm:w-screen max-w-96 px-3 py-1 sm:px-4 rounded-lg border focus:bg-blue-200 text-left'
             />
-            <p className='error'>{errors.url?.message}</p>
+            <p className='error'>{errors.description?.message}</p>
           </div>
           <div>
             <input
