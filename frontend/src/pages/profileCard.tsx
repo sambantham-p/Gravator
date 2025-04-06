@@ -1,4 +1,3 @@
-// Profile card page
 import {
   CalendarCheck,
   Link as LinkIcon,
