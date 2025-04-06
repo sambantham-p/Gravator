@@ -90,6 +90,27 @@ export const ProfileCard = () => {
             {profile.fullName?.toUpperCase().charAt(0)}
           </div>
         )}
+        <p className='flex justify-center font-bold text-4xl mb-2'>
+              {profile.gravatar.displayName || profile.fullName}
+            </p>
+
+            {profile.description && (
+              <p className='flex justify-center text-xl'>
+                {profile.description}
+              </p>
+            )}
+
+            <div className='flex flex-col md:flex-row gap-1 justify-center items-center text-lg'>
+              <p>{profile.country} ,</p>
+              <p>{profile.state} ,</p>
+              <p>{profile.city}</p>
+            </div>
+          </div>
+        ) : (
+          <div className='w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-xl font-bold mb-4 mx-auto'>
+            {profile.fullName?.toUpperCase().charAt(0)}
+          </div>
+        )}
 
         <div className='bg-gray-100 rounded-xl px-4 py-4 w-full sm:w-60 md:w-[105%] mx-auto'>
           <div className='mb-6 lg:flex lg:space-x-6'>
